@@ -106,5 +106,17 @@ ggplot(data = mpg, aes(x = displ, y = hwy)) +
 
 ```
 
+## Challenge 
+```{r challenge}
 
-## Boxplot 
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point(aes(color = hwy , size = class)) + 
+  geom_smooth(method = 'lm') + 
+  labs(title = "Relationship between engine size and MPG", 
+       x = "Highway MPG",
+       y = "Engine displacement (litters)") + 
+  theme_classic()+
+  theme(text = element_text(size = 16))
+
+
+```
