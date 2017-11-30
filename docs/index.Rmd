@@ -120,3 +120,80 @@ ggplot(data = mpg, aes(x = displ, y = hwy)) +
 
 
 ```
+
+
+
+
+
+## Data Wrangling with `dplyr`
+
+```{r clean up}
+
+gapminder <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/gapminder.csv")
+
+gapminder
+
+# useful functions to get to know your data:
+
+head(gapminder) #will show first 6 rows of the data 
+tail(gapminder) # show last 6 rows of the data
+
+head(gapminder, 10) #can tell the program how many rows to show 
+tail(gapminder, 9)
+
+#looking at the structure of your data, the column has what type of information, like chr = character, int = interger, num = numerical values
+str(gapminder)
+
+#return the column names
+names(gapminder)
+
+#dimensions of the data set 
+dim(gapminder)
+ncol(gapminder)
+nrow(gapminder)
+
+#build the dimension output from ncol and nrow --> combine rows and columns 
+c(nrow(gapminder), ncol(gapminder))
+
+#summary statistics
+summary(gapminder)
+
+#everything above we were operating on the whole gapminder data set 
+
+head(gapminder$lifeExp)
+
+```
+
+`read_csv` is from the `readr` package (part of the tidyverse). It is not part of `read.csv`, which is part of base R. 
+
+#Practice with Verbs 
+
+### Filter 
+```{r filter}
+
+swede <- filter(gapminder, country == "Sweden")
+swede_mean <- mean(swede$lifeExp)
+mean(filter(gapminder, country == "Sweden")$lifeExp)
+
+# pipe operator `%>%`
+
+##same output
+gapminder %>% head(3)
+head(gapminder,3)
+
+##let's use the %>% with our Sweden example
+swede <- filter(gapminder, country == "Sweden")
+swede_mean <- mean(swede$lifeExp)
+
+gapminder %>% filter(country == "Sweden") %>% summarise(mean(lifeExp))
+
+```
+
+
+
+###Select
+
+```{r select}
+
+
+```
