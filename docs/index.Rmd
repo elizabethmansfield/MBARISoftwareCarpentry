@@ -16,7 +16,7 @@ knitr::opts_chunk$set(echo = TRUE)
 library(tidyverse)
 ```
 
-## Scatterplot
+## `Scatterplot`
 
 ```{r mpg.scatter}
 
@@ -32,8 +32,79 @@ g + geom_point()
 ```
 
 
-### I need colour!
+### I need `colour!`
 
+```{r colour}
+
+g + geom_point(aes(color = class))
+
+```
+
+### Funky `shape` time -- variation in car class in black & white 
+
+```{r b&w}
+
+ggplot(data = mpg, aes(x=displ, y = hwy, shape = class)) + 
+  geom_point()
+
+```
+
+#### but shapes max out at six types so be careful....
+
+
+
+### `shape size`: need a figure in black & white
+```{r shape size}
+
+ggplot(data = mpg, aes(x = cty, y = hwy, size = class)) + geom_point()
+
+```
+
+## Car Class determined by `size` and Fuel Type determined by `colour`
+```{r colour and size}
+
+ggplot(data = mpg, aes(x = cty, y = hwy, size = class, color = fl)) + 
+  geom_point(alpha = 0.2)
+
+```
+
+
+
+```{r displ feature}
+
+ggplot(data = mpg) + 
+  geom_point(mapping = aes(colour = displ < 5, x = displ, y = hwy))
+   
+
+```
+
+
+## Multiple geoms 
+
+```{r mult_geoms}
+
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point() + 
+  geom_smooth()
+
+
+```
+
+
+## Customize
+
+```{r customize}
+
+ggplot(data = mpg, aes(x = displ, y = hwy)) +
+  geom_point() + 
+  geom_smooth() + 
+  labs(title = "Relationship between engine size and MPG", 
+       x = "Highway MPG",
+       y = "Engine displacement (litters)") + 
+  theme_classic()
+
+
+```
 
 
 ## Boxplot 
