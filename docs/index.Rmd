@@ -259,32 +259,6 @@ gapminder %>%
 
 #Day 2
 
-## joining datasets
-
-```{r co2 emissions}
-
-# read in co2 emissions 
-co2 <- read_csv("https://raw.githubusercontent.com/OHI-Science/data-science-training/master/data/co2.csv")
-
-co2 %>% head()
-co2 %>% str
-
-#create new variable with only gapminder 2007 data 
-gap_2007 <- gapminder %>% 
-  filter(year == 2007)
-gap_2007 %>% head()
-gap_2007 %>% str
-
-#left_join gap_2007 to co2
-lj <- left_join(gap_2007, co2, by = "country")
-lj %>% dim() #124 rows
-
-#right_join gap_2007 to co2
-rj <- right_join(gap_2007, co2)
-rj %>% dim()
-rj %>% View()
-```
-
 ## Reshaping datasets with `gather`, `spread`, `separate`, and `unite`
 
 ```{r reshaping datasets}
